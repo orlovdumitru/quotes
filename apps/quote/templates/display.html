@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" media="screen" href="{% static 'style_user.css' %}">
+	<title>User info</title>
+</head>
+<body>
+	<div class="wrapper">
+	<h1>Posts by: {{ user }} </h1>
+	<h1>Count: {{ count }} </h1>
+	<br>
+	
+	{% for quote in quotes %}
+		  
+			<p>
+				<span class="red">            
+					{{ quote.quoted_by }} : 
+				</span>
+				
+				{{ quote.description }}
+			</p>
+		<br>
+		<br>
+	{% endfor %}
+
+
+	<p><a href="/logout">Logout</a>
+		|
+	<a href="/quotes">Daashboard</a>
+	</p>
+
+	</div>
+</body>
+</html>

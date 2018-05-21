@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'style_user.css' %}">
+    <title>Info</title>
+</head>
+
+<body>
+        <a href="/logout">Logout</a>
+        <h2>Welcome, {{ request.session.name }}!</h2>
+       
+        
+        <div class="all-quotes">
+            <h3>Qotable Quotes</h3>
+            {% for quote in other_quotes %}
+                <div class='quote'>                
+                    <p>
+                        {{ quote.quoted_by }} : 
+                        {{ quote.description }}
+                    </p>
+                    <p>
+                        Posted by:
+                        <a href="/display/{{quote.user_quotes.id }}">{{ quote.user_quotes.name }}</a>
+                    </p>
+                    <a href="addfav/{{quote.id}}"> <button>Add to favourite</button></a>
+                </div>
+                <br>
+                <br>
+            {% endfor %}
+        </div>
+
+       
+        <div class='fav-quotes'>
+            <h3>Your Favourites</h3>
+            {% for quote in fav_quotes %}
+                <div class='quote'>
+                    <p>
+                        {{ quote.quoted_by }} : 
+                        {{ quote.description }}
+                    </p>
+                    <p>
+                        Posted by:
+                        <a href="/display/{{quote.user_quotes.id }}">{{quote.user_quotes.name }}</a>
+                    </p>
+                </div>
+                <br>
+                <br>
+            {% endfor %}
+        </div>
+
+        <div class='box_mesage'>
+            <form action="/newquote" method="POST">
+                {% csrf_token %}
+                <h3>Contribute a Quote:</h3>
+                <p> Quoted By:<br><input type="text" name="quoted"></p>
+                
+                <p><textarea name="qmessage" cols="30" rows="10"></textarea>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+
+        {% if messages %}
+            {% for message in messages %}
+                <h3>{{ message}}</h3>
+            {% endfor %}
+        {% endif %}
+    
+</body>
+
+</html>

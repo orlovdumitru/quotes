@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" media="screen" href="{% static 'style_user.css' %}">
+  <title>Registration</title>
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <div class="box">
+      <h1>Welcome!</h1>
+      <h1>Login: </h1>
+      <form action="/login" method="POST">
+        {% csrf_token %} 
+        <p>Email:<br><input type="text" name="email"></p> <p>Password:<br><input type="password" name="password"></p>
+        <p><input type="submit" name="submit" value="Log in"></p>
+      </form>
+    </div>
+
+    <div class="box">
+      
+      <form action="/new_user" method="POST">
+        {% csrf_token %}
+        <h1>Create new account</h1>
+
+        <p>Name:<br><input type="text" name="name"></p>
+        <p>Alias:<br><input type="text" name="alias"></p>
+        <p>Email:<br><input type="text" name="email"></p>
+       
+        <p>Password:<br><input type="password" name="password"></p>
+        <p>Confirm Password:<br><input type="password" name="confirmpass"></p>
+        <p>Date of Birth:<br><input type="date" name="date" value=""></p>
+        <p><input type="submit" name="submit" value="Register"></p>
+      </form>
+    </div> 
+  </div>
+  {% if messages %}
+    {% for message in messages %}
+      <h3>{{ message}}</h3>
+    {% endfor %}
+  {% endif %}
+
+ 
+
+</body>
+
+</html>
