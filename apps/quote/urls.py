@@ -11,8 +11,9 @@ urlpatterns = [
     path('logout', views.logout),
     path('quotes', views.quotes),
     path('newquote', views.newquote),
-    re_path('quotedby/(?P<id>\d+)/$', views.quoted_by),
+    # re_path('quotedby/(?P<id>\d+)/$', views.quoted_by),
     re_path('addfav/(?P<id>\d+)/$', views.add_fav),
+    re_path('removefav/(?P<id>\d+)/$', views.remove_fav),
     re_path('display/(?P<id>\d+)/$', views.display),
     # url(r'^(?P<id>\d+)$', views.display),
 ]

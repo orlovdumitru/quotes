@@ -77,8 +77,12 @@ def display(request, id):
     }
     return render(request, 'display.html', context)
 
-def quoted_by(request, id):
-    pass
+def remove_fav(request, id):
+    user = User.objects.get(id = request.session['user_id'])
+    quote = Quotable.objects.get(id = id)
+    quote.users_liked.remove(user)
+    return redirect('/quotes')
+    # .Remove
 
 def add_fav(request, id):
     user = User.objects.get(id = request.session['user_id'])
